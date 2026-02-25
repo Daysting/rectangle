@@ -55,12 +55,12 @@ def main():
     
     rect = Rectangle(width, height)
     
-    print("*"*50)
+    print("="*50)
     print(f"Width: {rect.width}")
     print(f"Height: {rect.height}")
     print(f"Area: {rect.get_area()}")
     print(f"Perimeter: {rect.get_perimeter()}")
-    print("*"*50)
+    print("="*50)
     print("\nGraphical representation:")
     rect.draw()
 

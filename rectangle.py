@@ -26,25 +26,23 @@ class Rectangle:
         if w <= 0 or h <= 0:
             print("Cannot draw a rectangle with non‑positive dimensions.")
             return
-        # compute number of interior gaps; use the larger of the horizontal
-        # and vertical counts so the spacing between the vertical “lines”
-        # matches the spacing between the horizontal ones
-        interior = max(w - 2, h - 2, 0)
-        # build a border that has a space between every asterisk
+        # draw exactly h rows of characters with w columns
+        # precompute horizontal border string and its length
         border = ("* " * w).rstrip()
-        # width in characters for interior calculation
-        interior_gap = len(border) - 2 if w > 1 else 0
-        # top border
-        print(border)
-        # middle rows – may be taller than input height when width > height
-        for _ in range(interior):
-            if w > 1:
-                print("*" + " " * interior_gap + "*")
+        border_len = len(border)
+
+        for row in range(h):
+            if row == 0 or row == h - 1:
+                # top or bottom row: asterisks separated by spaces
+                print(border)
             else:
-                print("*")
-        # bottom border
-        if h > 1:
-            print(border)
+                # middle rows: left and right borders with interior spaces
+                if w > 1:
+                    # gap is total width minus two border asterisks
+                    gap = border_len - 2
+                    print("*" + " " * gap + "*")
+                else:
+                    print("*")
 def main():
     print("="*50)
     print("Rectangle Calculator")
@@ -64,10 +62,12 @@ def main():
         print("="*50)
         print("\nGraphical representation:")
         rect.draw()
+        print("="*50)
 
         # ask user whether to continue
         answer = input("\nCreate another rectangle? (y/n): ").strip().lower()
         if answer not in ("y", "yes"):
+            print("="*50)
             print("Goodbye!")
             break
 

@@ -46,13 +46,21 @@ class Rectangle:
         if h > 1:
             print(border)
 def main():
+    print("="*50)
+    print("Rectangle Calculator")
+    print("="*50)
+
     width = float(input("Enter the width of the rectangle: "))
     height = float(input("Enter the height of the rectangle: "))
     
     rect = Rectangle(width, height)
     
+    print("*"*50)
+    print(f"Width: {rect.width}")
+    print(f"Height: {rect.height}")
     print(f"Area: {rect.get_area()}")
     print(f"Perimeter: {rect.get_perimeter()}")
+    print("*"*50)
     print("\nGraphical representation:")
     rect.draw()
 

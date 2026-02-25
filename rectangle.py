@@ -49,8 +49,22 @@ def main():
     print("="*50)
 
     while True:
-        width = float(input("Enter the width of the rectangle: "))
-        height = float(input("Enter the height of the rectangle: "))
+        # get width with validation: only digits allowed
+        while True:
+            width_str = input("Enter the width of the rectangle: ").strip()
+            if width_str.isdigit():
+                width = int(width_str)
+                break
+            else:
+                print("Please enter only digits (a positive integer) for the width.")
+        # get height with validation: only digits allowed
+        while True:
+            height_str = input("Enter the height of the rectangle: ").strip()
+            if height_str.isdigit():
+                height = int(height_str)
+                break
+            else:
+                print("Please enter only digits (a positive integer) for the height.")
         
         rect = Rectangle(width, height)
         
@@ -64,9 +78,13 @@ def main():
         rect.draw()
         print("="*50)
 
-        # ask user whether to continue
-        answer = input("\nCreate another rectangle? (y/n): ").strip().lower()
-        if answer not in ("y", "yes"):
+        # ask user whether to continue, only accept 'y' or 'n'
+        while True:
+            answer = input("\nCreate another rectangle? (y/n): ").strip().lower()
+            if answer in ("y", "n"):
+                break
+            print("Please type 'y' for yes or 'n' for no.")
+        if answer != "y":
             print("="*50)
             print("Goodbye!")
             break
